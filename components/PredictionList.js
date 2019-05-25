@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { CTA_API_KEY, CTA_API_URL } from 'react-native-dotenv';
+import { CTA_BUS_API_KEY, CTA_BUS_API_URL } from 'react-native-dotenv';
 import stopIds from '../constants/stopIds';
 
 class PredictionList extends Component {
@@ -12,7 +12,7 @@ class PredictionList extends Component {
   }
 
   componentDidMount() {
-    const fetchUrl = `${CTA_API_URL}getpredictions?key=${CTA_API_KEY}&stpid=${
+    const fetchUrl = `${CTA_BUS_API_URL}getpredictions?key=${CTA_BUS_API_KEY}&stpid=${
       stopIds.WentworthAnd26th
     }&format=json`;
 
