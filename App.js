@@ -2,17 +2,22 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Header } from 'react-native-elements';
 
-import PredictionList from './components/PredictionList';
+import BusArrivals from './components/BusArrivals';
+import TrainArrivals from './components/TrainArrivals';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{ text: 'Loose Squares'.toUpperCase(), style: { color: '#fff' } }}
+          centerComponent={{
+            text: 'Loose Squares',
+            style: { color: '#fff', textTransform: 'uppercase' },
+          }}
         />
         <View style={styles.content}>
-          <PredictionList />
+          <TrainArrivals />
+          <BusArrivals />
         </View>
       </View>
     );
@@ -23,10 +28,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    padding: 30,
   },
 });

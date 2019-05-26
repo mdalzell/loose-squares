@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from 'react-native-elements';
 import { CTA_BUS_API_KEY, CTA_BUS_API_URL } from 'react-native-dotenv';
 import stopIds from '../constants/stopIds';
 
-class PredictionList extends Component {
+class BusArrivals extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,9 +19,8 @@ class PredictionList extends Component {
 
     fetch(fetchUrl)
       .then(response => response.json())
-      .then(response => {
-        const responseJson = response;
-        const { error = null } = responseJson['bustime-response'];
+      .then(json => {
+        const { error = null } = json['bustime-response'];
 
         // If there is an error, show the first message
         if (error) {
@@ -29,29 +29,27 @@ class PredictionList extends Component {
             error: msg,
           });
         }
-      })
-      .catch(error => {
-        console.log(error);
       });
   }
 
   render() {
     const { error } = this.state;
 
-    if (error) {
-      return (
-        <View>
-          <Text>{error}</Text>
-        </View>
-      );
-    }
-
     return (
       <View>
-        <Text>Loose squares, loose squares</Text>
+        <Text h1>Bus Arrivals</Text>
+        {error ? (
+          <View>
+            <Text>{error}</Text>
+          </View>
+        ) : (
+          <View>
+            <Text>Loose squares, loose squares</Text>
+          </View>
+        )}
       </View>
     );
   }
 }
 
-export default PredictionList;
+export default BusArrivals;
