@@ -11,8 +11,8 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Header
           centerComponent={{
-            text: 'Loose Squares',
-            style: { color: '#fff', textTransform: 'uppercase' },
+            text: 'Loose Squares'.toUpperCase(),
+            style: { color: '#fff' },
           }}
         />
         <View style={styles.content}>
@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
-    flex: 1,
-    justifyContent: 'space-around',
-    padding: 30,
+    padding: 10,
   },
 });

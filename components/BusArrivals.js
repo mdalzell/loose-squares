@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-elements';
+import { View, Text } from 'react-native';
 import { CTA_BUS_API_KEY, CTA_BUS_API_URL } from 'react-native-dotenv';
+
+import ArrivalCard from './ArrivalCard';
+
 import stopIds from '../constants/stopIds';
 
 class BusArrivals extends Component {
@@ -37,11 +39,9 @@ class BusArrivals extends Component {
 
     return (
       <View>
-        <Text h1>Bus Arrivals</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 16, marginTop: 16 }}>Bus</Text>
         {error ? (
-          <View>
-            <Text>{error}</Text>
-          </View>
+          <ArrivalCard title={error} />
         ) : (
           <View>
             <Text>Loose squares, loose squares</Text>
