@@ -13,9 +13,7 @@ class TrainArrivals extends Component {
   };
 
   componentDidMount() {
-    const fetchUrl = `${CTA_TRAIN_API_URL}?key=${CTA_TRAIN_API_KEY}&mapid=${
-      stationIds.cermakChinatown
-    }&max=2&outputType=json`;
+    const fetchUrl = `${CTA_TRAIN_API_URL}?key=${CTA_TRAIN_API_KEY}&mapid=${stationIds.cermakChinatown}&max=2&outputType=json`;
 
     fetch(fetchUrl)
       .then(response => response.json())
@@ -34,7 +32,7 @@ class TrainArrivals extends Component {
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 16 }}>Train</Text>
         {arrivals.map((arrival, index) => {
           const { arrT, destNm } = arrival;
-          const arrivalTime = moment(arrT).format('hh:mm a');
+          const arrivalTime = moment(arrT).format('HH:mm');
 
           // Gonna use index as the key for now, not sure if CTA provides unique IDs
           return <ArrivalCard key={index} text={destNm} title={arrivalTime} />;

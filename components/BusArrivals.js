@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { CTA_BUS_API_KEY, CTA_BUS_API_URL } from 'react-native-dotenv';
+import moment from 'moment';
 
 import ArrivalCard from './ArrivalCard';
 
@@ -11,18 +12,17 @@ class BusArrivals extends Component {
     super(props);
     this.state = {
       error: null,
+      prd: [],
     };
   }
 
   componentDidMount() {
-    const fetchUrl = `${CTA_BUS_API_URL}getpredictions?key=${CTA_BUS_API_KEY}&stpid=${
-      stopIds.WentworthAnd26th
-    }&format=json`;
+    const fetchUrl = `${CTA_BUS_API_URL}getpredictions?key=${CTA_BUS_API_KEY}&stpid=${stopIds.WentworthAnd26th}&format=json`;
 
     fetch(fetchUrl)
       .then(response => response.json())
       .then(json => {
-        const { error = null } = json['bustime-response'];
+        const { error = null, prd } = json['bustime-response'];
 
         // If there is an error, show the first message
         if (error) {
@@ -30,12 +30,16 @@ class BusArrivals extends Component {
           this.setState({
             error: msg,
           });
+        } else {
+          this.setState({
+            prd,
+          });
         }
       });
   }
 
   render() {
-    const { error } = this.state;
+    const { error, prd } = this.state;
 
     return (
       <View>
@@ -44,7 +48,10 @@ class BusArrivals extends Component {
           <ArrivalCard title={error} />
         ) : (
           <View>
-            <Text>Loose squares, loose squares</Text>
+            {prd.map((arrival, index) => {
+              const { des, prdtm } = arrival;
+              return <ArrivalCard key={index} text={des} title={prdtm.substr(-5)} />;
+            })}
           </View>
         )}
       </View>
