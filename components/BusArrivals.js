@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { CTA_BUS_API_KEY, CTA_BUS_API_URL } from 'react-native-dotenv';
-import moment from 'moment';
 
 import ArrivalCard from './ArrivalCard';
 
@@ -12,7 +11,7 @@ class BusArrivals extends Component {
     super(props);
     this.state = {
       error: null,
-      prd: [],
+      arrivals: [],
     };
   }
 
@@ -22,7 +21,7 @@ class BusArrivals extends Component {
     fetch(fetchUrl)
       .then(response => response.json())
       .then(json => {
-        const { error = null, prd } = json['bustime-response'];
+        const { error = null, prd: arrivals = [] } = json['bustime-response'];
 
         // If there is an error, show the first message
         if (error) {
@@ -32,14 +31,14 @@ class BusArrivals extends Component {
           });
         } else {
           this.setState({
-            prd,
+            arrivals,
           });
         }
       });
   }
 
   render() {
-    const { error, prd } = this.state;
+    const { error, arrivals } = this.state;
 
     return (
       <View>
@@ -48,7 +47,7 @@ class BusArrivals extends Component {
           <ArrivalCard title={error} />
         ) : (
           <View>
-            {prd.map((arrival, index) => {
+            {arrivals.map((arrival, index) => {
               const { des, prdtm } = arrival;
               return <ArrivalCard key={index} text={des} title={prdtm.substr(-5)} />;
             })}
