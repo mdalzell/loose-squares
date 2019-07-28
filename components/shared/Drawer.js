@@ -8,6 +8,9 @@ const Drawer = createDrawerNavigator({
   },
   BusTimes: {
     screen: BusScreen,
+    navigationOptions: () => ({
+      title: 'Bus Times',
+    }),
   },
 });
 
