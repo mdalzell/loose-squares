@@ -3,7 +3,7 @@
     "name": "Loose Squares",
     "slug": "loose-squares",
     "privacy": "public",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": ["android"],
     "version": "0.0.2",
     "orientation": "portrait",
