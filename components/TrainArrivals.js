@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { CTA_TRAIN_API_KEY, CTA_TRAIN_API_URL } from 'react-native-dotenv';
 import moment from 'moment';
@@ -8,16 +8,14 @@ import ArrivalCardList from './shared/ArrivalCardList';
 
 const fetchUrl = `${CTA_TRAIN_API_URL}?key=${CTA_TRAIN_API_KEY}&mapid=${stationIds.cermakChinatown}&max=2&outputType=json`;
 
-class TrainArrivals extends Component {
-  state = {
-    arrivals: null,
-  };
+const TrainArrivals = () => {
+  const [arrivals, setArrivals] = useState(null);
 
-  componentDidMount() {
-    this.fetchTrainArrivals();
-  }
+  useEffect(() => {
+    fetchTrainArrivals();
+  });
 
-  fetchTrainArrivals = () => {
+  const fetchTrainArrivals = () => {
     fetch(fetchUrl)
       .then(response => response.json())
       .then(json => {
@@ -32,28 +30,20 @@ class TrainArrivals extends Component {
           return { text: destNm, title: arrivalTime };
         });
 
-        this.setState({ arrivals });
+        setArrivals(arrivals);
       });
   };
 
-  onRefreshPress = () => {
-    this.setState(
-      {
-        arrivals: null,
-      },
-      this.fetchTrainArrivals
-    );
+  const onRefreshPress = () => {
+    setArrivals(null);
   };
 
-  render() {
-    const { arrivals } = this.state;
-    return (
-      <View>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 16 }}>Train</Text>
-        <ArrivalCardList arrivals={arrivals} onRefreshPress={this.onRefreshPress} />
-      </View>
-    );
-  }
-}
+  return (
+    <View>
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 16 }}>Train</Text>
+      <ArrivalCardList arrivals={arrivals} onRefreshPress={onRefreshPress} />
+    </View>
+  );
+};
 
 export default TrainArrivals;
