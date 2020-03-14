@@ -3,8 +3,9 @@
     "name": "Loose Squares",
     "slug": "loose-squares",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/profile.png",
@@ -19,7 +20,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["assets/*"],
+    "assetBundlePatterns": [
+      "assets/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
