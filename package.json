@@ -10,7 +10,7 @@
   "dependencies": {
     "eslint": "^5.16.0",
     "eslint-config-universe": "^1.0.7",
-    "expo": "^38.0.0",
+    "expo": "^38.0.9",
     "moment": "^2.24.0",
     "prettier": "^1.18.2",
     "react": "16.11.0",
