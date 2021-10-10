@@ -9,6 +9,7 @@ import ArrivalCardList from './shared/ArrivalCardList';
 const fetchUrl = `${CTA_TRAIN_API_URL}?key=${CTA_TRAIN_API_KEY}&mapid=${stationIds.cermakChinatown}&max=2&outputType=json`;
 
 const TrainArrivals = () => {
+  const [error, setError] = useState(null);
   const [arrivals, setArrivals] = useState(null);
 
   useEffect(() => {
@@ -17,13 +18,13 @@ const TrainArrivals = () => {
 
   const fetchTrainArrivals = () => {
     fetch(fetchUrl)
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         const {
           ctatt: { eta },
         } = json;
 
-        const arrivals = eta.map(eta => {
+        const arrivals = eta.map((eta) => {
           const { arrT, destNm } = eta;
           const arrivalTime = moment(arrT).format('HH:mm');
 
@@ -41,7 +42,9 @@ const TrainArrivals = () => {
   return (
     <View>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginLeft: 16 }}>Train</Text>
-      <ArrivalCardList arrivals={arrivals} onRefreshPress={onRefreshPress} />
+      <View>
+        <ArrivalCardList arrivals={arrivals} onRefreshPress={onRefreshPress} />
+      </View>
     </View>
   );
 };
