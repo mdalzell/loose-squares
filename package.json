@@ -9,11 +9,11 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
-    "eslint": "^5.16.0",
-    "eslint-config-universe": "^1.0.7",
+    "eslint": "^7.32.0",
+    "eslint-config-universe": "^8.0.0",
     "expo": "^42.0.0",
     "moment": "^2.24.0",
-    "prettier": "^1.18.2",
+    "prettier": "^2.4.1",
     "react": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dotenv": "^0.2.0",
@@ -25,7 +25,11 @@
     "react-navigation": "^3.11.1"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
     "babel-preset-expo": "8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^2.4.0",
     "metro-react-native-babel-preset": "^0.53.1"
   },
